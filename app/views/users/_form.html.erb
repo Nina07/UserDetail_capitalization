@@ -1,0 +1,51 @@
+<%= form_for(user) do |f| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, class: 'capitalize-text', 'data-original' => "#{user.first_name}" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, class: 'capitalize-text', 'data-original' => "#{user.last_name}" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :occupation %>
+    <%= f.text_field :occupation, class: 'capitalize-text', 'data-original' => "#{user.occupation}" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address, class: 'capitalize-text', 'data-original' => "#{user.address}" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone %>
+    <%= f.text_field :phone, class: 'capitalize-text', 'data-original' => "#{user.phone}" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.capitalize-text').on('keyup', function () {
+      var position = $(this).prop("selectionStart");
+      $(this).capitalize(position);
+    }).capitalize();
+  });
+</script>
